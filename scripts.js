@@ -63,17 +63,32 @@ function renderCart() {
       .join("");
 
   document.querySelectorAll(".remove-from-cart").forEach((button) => {
-    //  TODO: implementeaza ce sa faca remove from cart
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
+      const productIndex = cart.findIndex((item) => item.id === productId);
+      if (productIndex !== -1) {
+        cart.splice(productIndex, 1);
+      }
+      renderCart();
+    });
   });
 }
 
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
 
-  // TODO: "impinge" produsul in lista de cart
-  // asta trebuie sa faci tu :)
+  if (!product) {
+    alert("Product not found!");
+    return;
+  }
 
-  // ca sa afisez actualizat - practic fac override la ce am deja in innerHTML
+  const existingItem = cart.find((item) => item.id === productId);
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push(product);
+  }
+
   renderCart();
 }
 
@@ -87,25 +102,20 @@ function removeFromCart(productId) {
 }
 
 function checkout() {
-  // TODO: conditioneaza un alert message daca nu ai continut
-  // HINT:
-  // if (
-  //   // cartul nu are continut
-  // ) {
-  //   alert("Your cart is empty!");
-  //   return;
-  // }
-
-  // TODO: calculeaza totalul cartului
-
-  // afiseaza mesajul
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].quantity;
+  }
+  
   alert(`Your total is $${total}. Thank you for your purchase!`);
   
-  // acum ca a dat checkout si "a cumparat"
-  // golim cartul pentru alte cumparaturi :)
   cart.length = 0; // Clear the cart
-
-  // si facem iar update
+  
   renderCart();
 }
 
