@@ -1,0 +1,8 @@
+body {
+    background-image: url(pictures/backg.png);
+}
+
+.cart-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }

@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mini Shop</title>
-    <style>
-      .cart-list {
-        max-height: 200px;
-        overflow-y: auto;
-      }
-    </style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>Mini Shop</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <div class="container mt-5">
-      <h1 class="mb-4">Mini Shop</h1>
-      <div class="row">
-        <div class="col-md-8">
-          <div class="row" id="product-list"></div>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+</head>
+<body>
+  <!-- navbar-->
+  <nav class="navbar navbar-light bg-light ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Shop</a>
+      <button class="btn btn-outline-success" id="view-cart-btn">View Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </nav>
+
+  <!-- sectiune principala magazin -->
+  <div class="container mt-5">
+    <h1 class="mb-4">Mini Shop</h1>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row" id="product-list"></div>
+      </div>
+
+      <div class="col-md-4">
+        <h3>Cart</h3>
+        <ul class="list-group cart-list" id="cart-list"></ul>
+        <h3>Total: $<span id="cart-total">0</span></h3>
+        <button class="btn btn-danger mt-3 w-100" id="empty-cart-btn">Empty Cart</button>
+        <button class="btn btn-success mt-3 w-100" id="checkout-btn">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal pt comanda -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Complete Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-        <div class="col-md-4">
-          <h3>Cart</h3>
-          <ul class="list-group cart-list" id="cart-list"></ul>
-          <button class="btn btn-success mt-3 w-100" id="checkout-btn">
-            Checkout
-          </button>
+        <div class="modal-body">
+          Are you sure you want to complete the order?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirm-order-btn">Complete Order</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="scripts.js"></script>
-
-    <script
-      src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script src="scripts.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+</body>
 </html>
